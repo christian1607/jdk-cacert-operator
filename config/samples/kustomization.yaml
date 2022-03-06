@@ -1,0 +1,5 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- jvm_v1alpha1_jdkcacert.yaml
+#- jvm_v1_jdkcacert.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

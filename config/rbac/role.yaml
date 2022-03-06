@@ -1,0 +1,67 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkcacerts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkcacerts/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkcacerts/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkkeystores
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkkeystores/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - jvm.caltamirano.com
+  resources:
+  - jdkkeystores/status
+  verbs:
+  - get
+  - patch
+  - update

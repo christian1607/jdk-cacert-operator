@@ -1,0 +1,9 @@
+apiVersion: jvm.caltamirano.com/v1alpha1
+kind: JdkCacert
+metadata:
+  name: jdkcacert-sample-v1alpha1
+spec:
+  # Add fields here
+  secrets:
+    - certificate1
+    - certicate2
