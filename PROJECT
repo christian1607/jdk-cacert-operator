@@ -1,47 +1,11 @@
 domain: caltamirano.com
-layout:
-- go.kubebuilder.io/v3
-plugins:
-  manifests.sdk.operatorframework.io/v2: {}
-  scorecard.sdk.operatorframework.io/v2: {}
-projectName: jdk-cacert-operator
-repo: jdk-cacert-operator
+layout: go.kubebuilder.io/v2
+projectName: jdk-cacerts
+repo: github.com/christian1607/jdk-cacerts-operator
 resources:
-- api:
-    crdVersion: v1
-    namespaced: true
-  controller: true
-  domain: caltamirano.com
-  group: jvm
-  kind: JdkCacert
-  path: jdk-cacert-operator/api/v1alpha1
+- group: delivery
+  kind: JdkCaCert
   version: v1alpha1
-- api:
-    crdVersion: v1
-    namespaced: true
-  domain: caltamirano.com
-  group: jvm
-  kind: JdkCacert
-  path: jdk-cacert-operator/api/v1beta1
-  version: v1beta1
-- api:
-    crdVersion: v1
-    namespaced: true
-  domain: caltamirano.com
-  group: jvm
-  kind: JdkCacert
-  path: jdk-cacert-operator/api/v1
-  version: v1
-  webhooks:
-    conversion: true
-    webhookVersion: v1
-- api:
-    crdVersion: v1
-    namespaced: true
-  controller: true
-  domain: caltamirano.com
-  group: jvm
-  kind: JdkKeystore
-  path: jdk-cacert-operator/api/v1alpha1
-  version: v1alpha1
-version: "3"
+version: 3-alpha
+plugins:
+  go.sdk.operatorframework.io/v2-alpha: {}

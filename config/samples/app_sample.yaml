@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: fps-deployment-ws-libroreclamaciones
+  namespace: jdk-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fps-app-ws-libroreclamaciones
+      tier: backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fps-app-ws-libroreclamaciones
+        tier: backend
+    spec:
+      containers:
+      - env:
+        - name: PROFILE
+          value: dev
+        image: christian1607/fps-app-ws-libroreclamaciones:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: app
+        volumeMounts:
+        - name: cacert
+          mountPath: "/mnt/cacert" 
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: secretregistryazure
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: cacert
+          secret:
+            secretName: cacert

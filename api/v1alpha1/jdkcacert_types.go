@@ -1,5 +1,5 @@
 /*
-Copyright 2022.
+
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,56 +22,56 @@ import (
 	"time"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+// JdkCaCertSpec defines the desired state of JdkCaCert
+type JdkCaCertSpec struct {
 
-// JdkCacertSpec defines the desired state of JdkCacert
-type JdkCacertSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Secrets wich contain certificates name of the k8s secrets to be added to the cacert secret
+	// Secrets name of the k8s secrets to be added to the cacert secret
 	Secrets []string `json:"secrets,omitempty"`
+
+	// JdkVersion specify the JDK version which is used, valid option 8 or 11 .
+	JdkVersion string `json:"jdkVersion,omitempty"`
 }
 
-// JdkCacertStatus defines the observed state of JdkCacert
-type JdkCacertStatus struct {
+// JdkCaCertStatus defines the observed state of JdkCaCert
+type JdkCaCertStatus struct {
 
 	// +kubebuilder:validation:Minimum:=0
+
 	// TotalSecrets total certificates added in the cacert secret
 	TotalSecrets int `json:"totalSecrets"`
 
 	// +kubebuilder:validation:Optional
+
 	// LastSync last time sync.
 	LastSync string `json:"lastSync"`
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
 
-// JdkCacert is the Schema for the jdkcacerts API
-type JdkCacert struct {
+// JdkCaCert is the Schema for the jdkcacerts API
+type JdkCaCert struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   JdkCacertSpec   `json:"spec,omitempty"`
-	Status JdkCacertStatus `json:"status,omitempty"`
+	Spec   JdkCaCertSpec   `json:"spec,omitempty"`
+	Status JdkCaCertStatus `json:"status,omitempty"`
 }
 
-//+kubebuilder:object:root=true
+// +kubebuilder:object:root=true
 
-// JdkCacertList contains a list of JdkCacert
-type JdkCacertList struct {
+// JdkCaCertList contains a list of JdkCaCert
+type JdkCaCertList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []JdkCacert `json:"items"`
+	Items           []JdkCaCert `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&JdkCacert{}, &JdkCacertList{})
+	SchemeBuilder.Register(&JdkCaCert{}, &JdkCaCertList{})
 }
 
-func (jdk *JdkCacert) UpdateStatus(status JdkCacertStatus) error {
+func (jdk *JdkCaCert) UpdateStatus(status JdkCaCertStatus) error {
 
 	if status.TotalSecrets < 0 {
 		return errors.New("total secrets cannot be less than zero")

@@ -1,0 +1,10 @@
+apiVersion: delivery.caltamirano.com/v1alpha1
+kind: JdkCaCert
+metadata:
+  name: jdkcacert-caltamirano
+  namespace: jdk-operator
+spec:
+  secrets:
+    - "ocpdesa"
+    - "ocpcert"
+  jdkVersion: "11"

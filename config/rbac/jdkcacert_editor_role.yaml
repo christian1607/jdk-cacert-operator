@@ -5,7 +5,7 @@ metadata:
   name: jdkcacert-editor-role
 rules:
 - apiGroups:
-  - jvm.caltamirano.com
+  - delivery.caltamirano.com
   resources:
   - jdkcacerts
   verbs:
@@ -17,7 +17,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - jvm.caltamirano.com
+  - delivery.caltamirano.com
   resources:
   - jdkcacerts/status
   verbs:
